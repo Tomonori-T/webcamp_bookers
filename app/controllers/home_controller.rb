@@ -1,4 +1,4 @@
 class HomeController < ApplicationController
-  def books
+  def top
   end
 end

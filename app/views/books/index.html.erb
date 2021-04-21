@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" media="all" href="/assets/application-d12397cbc3a266ce5a99f7b588223090c55ca04a439953bb5f9304395de93fc3.css" data-turbolinks-track="reload">
+    <script src="/assets/application-4e370d3723b6f204426a9414077d365ea07814cce5619ae24fb7e581988f19ed.js" data-turbolinks-track="reload"></script>
+    <title>WebCampBackendNew</title>
+    <meta name="csrf-param" content="authenticity_token">
+    <meta name="csrf-token" content="ftzlTMRBS0YJRakuyyGKlZUW4TqUK3funEetyKalRa5uAYdn4yDm11u2kLmgYlSt7dVkOsYi3+tLtsiCJbhkTw==">
+  </head>
+  <body>
+    <p id = "notice"></p>
+    <h1>Books</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Body</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+    <h2>New book</h2>
+    <%= form_with model:@blog, local:true do |f| %>
+
+      <h4>Title</h4>
+      <%= f.text_field :title %>
+
+      <h4>Body</h4>
+      <%= f.text_field :body %>
+
+      <%= f.submit 'Create Book' %>
+
+    <% end %>
+  </body>
+</html>
