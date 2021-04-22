@@ -10,9 +10,13 @@ class BooksController < ApplicationController
     end
 
     def create
-    @book = Book.new(book_params)
-    @book.save
-    redirect_to book_path(@book.id)
+      @book = Book.new(book_params)
+      if @book.save
+        redirect_to book_path(@book.id), notice: 'Book was successfully created.'
+      else
+        flash.now[:alert] = '2 errors prohibited this book from being saved:'
+        render :index
+      end
     end
 
     def edit
@@ -21,8 +25,11 @@ class BooksController < ApplicationController
 
     def update
       book = Book.find(params[:id])
-      book.update(book_params)
-      redirect_to book_path(book.id)
+      if  book.update(book_params)
+        redirect_to book_path(book.id),notice: 'Book was successfully updated.'
+      else
+        flash.now[:alert] = '1 error prohibited this book from being saved:'
+      end
     end
 
     def destroy
@@ -32,7 +39,7 @@ class BooksController < ApplicationController
     end
 
     private
-    def book_params
-    params.require(:book).permit(:title, :body)
+      def book_params
+        params.require(:book).permit(:title, :body)
     end
 end
