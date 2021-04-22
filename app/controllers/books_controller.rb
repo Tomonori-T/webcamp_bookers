@@ -12,9 +12,10 @@ class BooksController < ApplicationController
     def create
       @book = Book.new(book_params)
       if @book.save
-        redirect_to book_path(@book.id), notice: 'Book was successfully created.'
+        redirect_to book_path(@book.id),notice: 'Book was successfully created.'
       else
         flash.now[:alert] = '2 errors prohibited this book from being saved:'
+        @books = Book.all
         render :index
       end
     end
@@ -28,7 +29,9 @@ class BooksController < ApplicationController
       if  book.update(book_params)
         redirect_to book_path(book.id),notice: 'Book was successfully updated.'
       else
-        flash.now[:alert] = '1 error prohibited this book from being saved:'
+        flash.now[:alert] = '2 error prohibited this book from being saved:'
+        @book = Book.find(params[:id])
+        render :edit
       end
     end
 
@@ -41,5 +44,5 @@ class BooksController < ApplicationController
     private
       def book_params
         params.require(:book).permit(:title, :body)
-    end
+      end
 end
