@@ -3,9 +3,11 @@
 <%= form_with model:@book, url:"/books/#{@book.id}", local:true do |f| %>
 <% if @book.errors.any? %>
   <h2><%= @book.errors.count %>error prohibited this book from being saved:</h2>
+  <ul>
   <% @book.errors.full_messages.each do |message| %>
   <li><%= message %></li>
   <% end %>
+  </ul>
 <% end %>
 <p>
   <h6>Title</h6>
@@ -16,7 +18,7 @@
   <%= f.text_area :body %>
 </p>
 <p>
-<%= f.submit 'update' %>
+<%= f.submit 'Update Book' %>
 </p>
 <td>
   <%= link_to "Show", book_path(@book.id) %>
